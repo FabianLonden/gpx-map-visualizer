@@ -1,8 +1,8 @@
 document.getElementById("uploadForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); // Prevent default form submission
     
     const fileInput = document.getElementById("gpxFile");
-    const file = fileInput.files[0];  // Get the first file
+    const file = fileInput.files[0];  // Get the first selected file
 
     // Check if a file is selected
     if (!file) {
@@ -25,11 +25,11 @@ document.getElementById("uploadForm").addEventListener("submit", function(event)
     reader.onload = function(e) {
         const fileContent = e.target.result;
 
-        // Log the file content to the console to see if it's being read correctly
-        console.log(fileContent);
+        // Log the GPX file content to the console to verify it's being read correctly
+        console.log(fileContent); // Check if this logs the GPX XML data
 
         // Create the map
-        const map = L.map('map').setView([51.505, -0.09], 13);  // Default view
+        const map = L.map('map').setView([51.505, -0.09], 13);  // Default view in case GPX file is empty or fails
 
         // Add a tile layer (using OpenStreetMap here)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -45,10 +45,13 @@ document.getElementById("uploadForm").addEventListener("submit", function(event)
                 shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png'
             }
         }).on('loaded', function(e) {
-            map.fitBounds(e.target.getBounds());  // Zoom and center map to fit the GPX track
+            // Zoom and center map to fit the bounds of the GPX track
+            map.fitBounds(e.target.getBounds());
+            console.log('GPX track loaded', e.target.getBounds());  // Log the loaded track bounds
         }).addTo(map);
     };
 
     // Read the file content as text
     reader.readAsText(file);  // Read the file as text (GPX file)
 });
+
