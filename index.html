@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPX File Upload and Map Display</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+    <!-- Leaflet GPX Plugin -->
+    <script src="https://unpkg.com/leaflet-gpx@1.0.0/dist/leaflet-gpx.min.js"></script>
+    
+    <!-- Optional styling for the page -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        #map {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+        }
+        .container {
+            padding: 20px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        #fileInfo {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload GPX File</h1>
+        
+        <!-- File upload form -->
+        <form id="uploadForm">
+            <input type="file" id="gpxFile" accept=".gpx" />
+            <button type="submit">Upload GPX File</button>
+        </form>
+        
+        <!-- File info display -->
+        <div id="fileInfo"></div>
+        
+        <!-- Map container -->
+        <div id="map"></div>
+    </div>
+
+    <!-- Link to the upload.js file -->
+    <script src="upload.js"></script>
+</body>
+</html>
